@@ -1,9 +1,11 @@
 import Building, { BuildingM } from './Building'
-import { makeExecutableSchema } from 'graphql-tools'
+import { makeExecutableSchema, } from 'graphql-tools'
+import { AddressM } from "./Address";
 
 const RootQuery = `
  type RootQuery {
     buildings:[Building]
+    addresses:[Address]
  }
 `;
 const RootMutation = `
@@ -20,22 +22,23 @@ const SchemaDefinition = `
 const resolvers = {
     RootQuery: {
         async buildings() {
-            console.log('hell O ')
             return await BuildingM.find();
+        },
+        async addresses() {
+            return await AddressM.find();
         },
     },
     RootMutation: {
         async insertBuilding(_, {building}) {
-            console.log(building)
             try {
                 const insertedHome = await BuildingM.create(building);
-                console.log(insertedHome)
                 return insertedHome;
             }
             catch (a) {
                 throw new Error("something went wrong " + a)
             }
-        }
+        },
+
     }
 };
 export default makeExecutableSchema({
