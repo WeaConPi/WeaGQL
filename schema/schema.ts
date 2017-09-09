@@ -1,7 +1,7 @@
-import Building, { BuildingM } from './Building'
-import { makeExecutableSchema, } from 'graphql-tools'
-import { AddressM } from "./Address";
-import Day, { DayResolver } from "./Day";
+import Building, { BuildingM } from './Building';
+import { makeExecutableSchema } from 'graphql-tools';
+import { AddressM } from './Address';
+import Day, { DayResolver } from './Day';
 
 const RootQuery = `
  type RootQuery {
@@ -23,30 +23,25 @@ const SchemaDefinition = `
   }
 `;
 const resolvers = {
-    RootQuery: {
-        async buildings() {
-            return await BuildingM.find();
-        },
-        async addresses() {
-            return await AddressM.find();
-        },
-
-
+  RootQuery: {
+    async buildings() {
+      return await BuildingM.find();
     },
-    RootMutation: {
-        async insertBuilding(_, {building}) {
-            try {
-                return await BuildingM.create(building);
-            }
-            catch (a) {
-                throw new Error("something went wrong " + a)
-            }
-        },
-
-
-    }
+    async addresses() {
+      return await AddressM.find();
+    },
+  },
+  RootMutation: {
+    async insertBuilding(_, { building }) {
+      try {
+        return await BuildingM.create(building);
+      } catch (a) {
+        throw new Error('something went wrong ' + a);
+      }
+    },
+  },
 };
 export default makeExecutableSchema({
-    typeDefs: [SchemaDefinition, RootQuery, RootMutation, Building, Day],
-    resolvers: {...resolvers, ...DayResolver},
+  typeDefs: [SchemaDefinition, RootQuery, RootMutation, Building, Day],
+  resolvers: { ...resolvers, ...DayResolver },
 });
