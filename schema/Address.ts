@@ -32,12 +32,12 @@ const schema = new Schema({
 export interface IAddress extends Document, AddressC {
 }
 
-export interface IBuildingModel {
+export interface IAddressModel {
 }
 
-export type AddressModel = Model<IAddress> & IBuildingModel & IAddress;
+export type AddressModel = Model<IAddress> & IAddressModel & IAddress;
 
-export const AddressM: AddressModel = <AddressModel>mongoose.model<IAddress>("Address", schema);
+export const AddressM: AddressModel = <AddressModel>mongoose.model<IAddress>("Address", schema,'address');
 
 
 const Address = `

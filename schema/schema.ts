@@ -1,11 +1,14 @@
 import Building, { BuildingM } from './Building'
 import { makeExecutableSchema, } from 'graphql-tools'
 import { AddressM } from "./Address";
+import Day, { DayResolver } from "./Day";
 
 const RootQuery = `
  type RootQuery {
     buildings:[Building]
     addresses:[Address]
+    days(buildingId : String, page: Int, pageSize:Int) :DayPaginated
+    day(buildingId : String, date: String) :[Day]
  }
 `;
 const RootMutation = `
@@ -27,21 +30,23 @@ const resolvers = {
         async addresses() {
             return await AddressM.find();
         },
+
+
     },
     RootMutation: {
         async insertBuilding(_, {building}) {
             try {
-                const insertedHome = await BuildingM.create(building);
-                return insertedHome;
+                return await BuildingM.create(building);
             }
             catch (a) {
                 throw new Error("something went wrong " + a)
             }
         },
 
+
     }
 };
 export default makeExecutableSchema({
-    typeDefs: [SchemaDefinition, RootQuery, RootMutation, Building],
-    resolvers: resolvers,
+    typeDefs: [SchemaDefinition, RootQuery, RootMutation, Building, Day],
+    resolvers: {...resolvers, ...DayResolver},
 });
