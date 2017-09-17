@@ -6,11 +6,11 @@ import * as bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
 import schema from './schema/schema'
 import { graphiqlConnect } from 'apollo-server-express';
-
+import cors = require('cors')
 const app = express();
 
 const PORT = (process.env.PORT || 5005);
-
+app.use(cors())
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema: schema}));
 
 app.use('/graphiql', graphiqlConnect({

@@ -8,9 +8,6 @@
     "build:live": "nodemon",
     "heroku-postbuild": "tsc -p tsconfig.json"
   },
-  "engines": {
-    "node": "8"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeaConPi/WeaGQL.git"
@@ -25,6 +22,7 @@
     "apollo-server-express": "^1.1.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "graphql": "^0.11.2",
     "graphql-tools": "^0.10.0",
