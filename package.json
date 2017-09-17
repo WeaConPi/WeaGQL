@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "WeaConPi GraphQL layer",
   "main": "index.ts",
+  "engines": {
+    "node": "8"
+  },
   "scripts": {
     "start": "npm run build:live",
     "build:live": "nodemon",
