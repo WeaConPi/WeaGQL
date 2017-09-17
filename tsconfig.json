@@ -4,7 +4,8 @@
     "target": "es6",
     "noImplicitAny": false,
     "sourceMap": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "build"
   },
   "types": [
     "node"
