@@ -28,7 +28,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "graphql": "^0.11.2",
-    "graphql-tools": "^0.10.0",
+    "graphql-tools": "1.2.1",
     "mongoose": "^4.11.10",
     "typescript": "^2.2.2"
   },
