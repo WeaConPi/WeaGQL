@@ -1,5 +1,8 @@
 import Building, { BuildingM } from './Building';
-import { makeExecutableSchema } from 'graphql-tools';
+import {
+  addResolveFunctionsToSchema,
+  makeExecutableSchema,
+} from 'graphql-tools';
 import { AddressM } from './Address';
 import Day, { DayResolver } from './Day';
 
@@ -25,7 +28,7 @@ const SchemaDefinition = `
 const resolvers = {
   RootQuery: {
     async buildings() {
-      return await BuildingM.find();
+      return await BuildingM.find({});
     },
     async addresses() {
       return await AddressM.find();
@@ -41,7 +44,9 @@ const resolvers = {
     },
   },
 };
-export default makeExecutableSchema({
+const schema = makeExecutableSchema({
   typeDefs: [SchemaDefinition, RootQuery, RootMutation, Building, Day],
-  resolvers: { ...resolvers, ...DayResolver },
+  resolvers: resolvers,
 });
+addResolveFunctionsToSchema(schema, DayResolver);
+export default schema;
