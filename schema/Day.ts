@@ -69,7 +69,7 @@ export const DayResolver = {
       };
     },
     async day(_, { buildingId, date }) {
-      return await DayM.find({ buildingId, date });
+      return await DayM.findOne({ buildingId, date });
     },
   },
   Day: {

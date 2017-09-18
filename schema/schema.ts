@@ -11,7 +11,7 @@ const RootQuery = `
     buildings:[Building]
     addresses:[Address]
     days(buildingId : String, page: Int, pageSize:Int) :DayPaginated
-    day(buildingId : String, date: String) :[Day]
+    day(buildingId : String, date: String) :Day
  }
 `;
 const RootMutation = `

@@ -38,7 +38,7 @@ export type PredictionModel = Model<IPrediction> &
 
 export const PredictionM: PredictionModel = <PredictionModel>mongoose.model<
   IPrediction
->('Prediction', schema, 'Prediction');
+>('Prediction', schema, 'prediction');
 
 const Prediction = `
     type Prediction {
