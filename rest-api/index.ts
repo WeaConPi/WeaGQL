@@ -15,7 +15,7 @@ router.get('/hours/:dayId', async (req, res) => {
   res.json(hours);
 });
 router.get('/day/building/:buildingId', async (req, res) => {
-  const day = await DayM.findOne({
+    const day = await DayM.findOne({
     buildingId: req.params.buildingId,
     date: new Date(req.query.date),
   });
