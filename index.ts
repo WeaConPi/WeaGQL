@@ -7,7 +7,7 @@ import { graphqlExpress } from 'apollo-server-express';
 import schema from './schema/schema';
 import { graphiqlConnect } from 'apollo-server-express';
 import cors = require('cors');
-import { initializeREST } from './rest-api/index';
+import REST from './rest-api/index';
 const app = express();
 
 const PORT = process.env.PORT || 6004;
@@ -21,9 +21,9 @@ app.use(
   }),
 );
 app.get('/api/hello2', async (req, res) => {
-    res.json({ hello: 'world' });
+    res.json({ hello: 'world - 2' });
 });
-initializeREST(app);
+app.use('/api',REST )
 app.listen(PORT, () => {
   console.log(`Start is up and running on localhost:${PORT}`);
 });
