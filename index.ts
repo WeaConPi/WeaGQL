@@ -20,7 +20,9 @@ app.use(
     endpointURL: '/graphql',
   }),
 );
-
+app.get('/api/hello2', async (req, res) => {
+    res.json({ hello: 'world' });
+});
 initializeREST(app);
 app.listen(PORT, () => {
   console.log(`Start is up and running on localhost:${PORT}`);
