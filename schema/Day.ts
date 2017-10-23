@@ -44,6 +44,7 @@ export const DayM: DayModel = <DayModel>mongoose.model<IDay>(
 
 const Day = `
     type Day{
+        _id:String,
         date:String,
         note:String,
         building:Building,
@@ -69,6 +70,7 @@ export const DayResolver = {
       };
     },
     async day(_, { buildingId, date }) {
+      console.log(date);
       return await DayM.findOne({ buildingId, date });
     },
   },

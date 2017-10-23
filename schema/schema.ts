@@ -4,7 +4,8 @@ import {
   makeExecutableSchema,
 } from 'graphql-tools';
 import { AddressM } from './Address';
-import Day, { DayResolver } from './Day';
+import Day, { DayM, DayResolver } from './Day';
+import { updateDay } from '../service/DayService';
 
 const RootQuery = `
  type RootQuery {
@@ -17,6 +18,7 @@ const RootQuery = `
 const RootMutation = `
  type RootMutation {
     insertBuilding( building: BuildingInput! ): Building
+    upsertNoteForDay( dayId: String!, note: String ): Day
  }
 `;
 const SchemaDefinition = `
@@ -38,6 +40,13 @@ const resolvers = {
     async insertBuilding(_, { building }) {
       try {
         return await BuildingM.create(building);
+      } catch (a) {
+        throw new Error('something went wrong ' + a);
+      }
+    },
+    async upsertNoteForDay(_, { dayId, note }) {
+      try {
+        return await updateDay(dayId, note);
       } catch (a) {
         throw new Error('something went wrong ' + a);
       }
